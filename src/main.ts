@@ -32,12 +32,12 @@ import { TaskInterface } from './interfaces/task.interface';
     `,
 })
 export class App {
-  pendingTasks: any = [
+  pendingTasks: TaskInterface[] = [
     { id: 1, text: 'Zadanie 1' },
     { id: 2, text: 'Zadanie 2' },
     { id: 3, text: 'Zadanie 3' },
   ];
-  doneTasks: any = [];
+  doneTasks: TaskInterface[] = [];
 
   number = 4;
   addTask() {
@@ -48,12 +48,16 @@ export class App {
     this.doneTasks = [];
   }
   endTask = (id: number) => {
-    let taskToEnd = this.pendingTasks.find((task: any) => task.id == id);
+    let taskToEnd = this.pendingTasks.find(
+      (task: TaskInterface) => task.id == id
+    ) || { id: id, text: 'Zadanie ' + id };
     let a = this.pendingTasks.splice(this.pendingTasks.indexOf(taskToEnd), 1);
     this.doneTasks.push({ id: id, text: 'Zadanie ' + id });
   };
   restoreTask = (id: number) => {
-    let taskToRestore = this.doneTasks.find((task: any) => task.id == id);
+    let taskToRestore = this.doneTasks.find(
+      (task: TaskInterface) => task.id == id
+    ) || { id: id, text: 'Zadanie ' + id };
     this.doneTasks.splice(this.doneTasks.indexOf(taskToRestore), 1);
     this.pendingTasks.push({ id: id, text: 'Zadanie ' + id });
   };
