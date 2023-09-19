@@ -19,13 +19,13 @@ import { Task } from './task';
   template: `
     <h1>Zadania do wykonania</h1>
     <ul>
-      <li *ngFor="let task of pendingTasks"><task [text]="task.text" (statusChanged)="endTask(task.id)" /></li>
+      <li *ngFor="let task of pendingTasks"><task [text]="task.text" [done]="false" (statusChanged)="endTask(task.id)" /></li>
     </ul>
     <button (click)="addTask()">Dodaj zadanie</button>
     <hr>
     <h1>Wykonane</h1>
     <ul>
-      <li *ngFor="let task of doneTasks"><task [text]="task.text" (statusChanged)="endTask(task.id)" /></li>
+      <li *ngFor="let task of doneTasks"><task [text]="task.text" [done]="true" (statusChanged)="endTask(task.id)" /></li>
     </ul>
   `,
 })

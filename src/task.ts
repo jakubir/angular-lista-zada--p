@@ -8,12 +8,13 @@ import { EmitterVisitorContext } from '@angular/compiler';
   imports: [CommonModule],
   template: `
     {{ text }} 
-    <button (click)="changeStatus()">Zakończ</button>
+    <button (click)="changeStatus()">{{ done ? 'Przywróć' : 'Zakończ' }}</button>
   `,
 })
 export class Task {
   @Input() text = '';
   @Input() id = 0;
+  @Input() done = false;
   @Output() statusChanged = new EventEmitter();
   changeStatus() {
     this.statusChanged.emit();
