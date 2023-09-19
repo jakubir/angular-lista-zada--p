@@ -8,14 +8,14 @@ import { EmitterVisitorContext } from '@angular/compiler';
   imports: [CommonModule],
   template: `
     {{ text }} 
-    <button (click)="endTask()">Zakończ</button>
+    <button (click)="changeStatus()">Zakończ</button>
   `,
 })
 export class Task {
   @Input() text = '';
   @Input() id = 0;
-  @Output() ended = new EventEmitter();
-  endTask() {
-    this.ended.emit();
+  @Output() statusChanged = new EventEmitter();
+  changeStatus() {
+    this.statusChanged.emit();
   }
 }
